@@ -34,7 +34,9 @@ df3_past <- read.csv(file = "Allsvenskan_past_seasons.csv", head=TRUE, sep=";", 
 # creates POSIX date and time
 library(plyr)
 df3_past <- mutate(df3_past,
-								DATE_AND_TIME 	=		as.POSIXct(as.character(DATE_AND_TIME), origin = "1970-01-01", tz = "CET", format="%Y-%m-%d %H:%M"))
+			DATE_AND_TIME 	=		as.POSIXct(as.character(DATE_AND_TIME), origin = "1970-01-01", tz = "CET", format="%Y-%m-%d %H:%M"),
+			DATE		=		as.Date(as.character(DATE), origin = "1970-01-01", format="%Y-%m-%d")
+		  )
 
 
 ### gets data via webscraping representing current season
