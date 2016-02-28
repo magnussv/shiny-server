@@ -133,7 +133,20 @@ df3 <- rbind(df3_past, df3_current)
 					 ),
 					 rownames = FALSE)
 					 				 
- 
+ 	
+  output$mytable13 <- renderDataTable({
+  
+  mytable13 <- df3_past
+												
+	print(mytable13)					
+											
+  },  options = list(lengthMenu = list(c(100, -1), c('100', 'All')),
+					iDisplayLength = 100,
+					 paging = TRUE, 
+					 searching = TRUE,
+					 bInfo = 0 # information on/off (how many records filtered, etc) https://groups.google.com/forum/#!topic/shiny-discuss/YECf_dPip9M
+					 ),
+					 rownames = FALSE)
  
 
   # a table, reactive to input$show_season
