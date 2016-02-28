@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
 	library(ggplot2)
 	p <- ggplot(subset(iris.two, Species == input$what_species), aes(x= variable, y=value)) +
 				geom_boxplot() +
-				ggtitle(paste("Species: ", input$what_species, sep=""))
+				ggtitle(paste("Species of interest: ", input$what_species, sep=""))
   
 	print(p)
   })
