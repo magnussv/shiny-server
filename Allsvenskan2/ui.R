@@ -48,6 +48,9 @@ shinyUI(navbarPage("ALLSVENSKAN",
     tabPanel("df3_current", 
 	dataTableOutput('mytable12')
   ),
+   tabPanel("df3_past", 
+	dataTableOutput('mytable13')
+  ),
   
   
   tabPanel("Position per omgång", 
