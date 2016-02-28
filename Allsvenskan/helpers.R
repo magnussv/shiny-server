@@ -77,8 +77,8 @@ Sys.setlocale(, "Swedish")
 # creates useful columns
 library(plyr)
 data <- mutate(data,
-		DATE_AND_TIME 		=		as.POSIXct(as.character(DATE_AND_TIME), origin = "1970-01-01", tz = "CET", format="%Y-%m-%d %H:%M"),
 		DATE 			=		as.Date(substring(as.character(DATE_AND_TIME), 1, 10), origin = "1970-01-01", tz = "CET", format="%Y-%m-%d"),
+		DATE_AND_TIME 		=		as.POSIXct(as.character(DATE_AND_TIME), origin = "1970-01-01", tz = "CET", format="%Y-%m-%d %H:%M"),
 		TIME			=		ifelse(nchar(as.character(DATE_AND_TIME)) < 11, NA, substring(DATE_AND_TIME, 12, 16)),
 		WEEKDAY			=		weekdays(DATE, abbreviate = FALSE),
 		ATTENDENCE		=		as.numeric(gsub(" ", "", as.character(ATTENDENCE)))
