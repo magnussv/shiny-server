@@ -40,10 +40,11 @@ df3_past <- mutate(df3_past,
 
 
 ### gets data via webscraping representing current season
-urls <- c("http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=57221") # season 2015
+urls <- c("http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=57221", # season 2015
+          "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=62068") # season 2016
 
 # scrapes the web for the data
-df <- webscraper_allsvenskan(url = urls, season = seq(from = 2015, to = 2015, by = 1))
+df <- webscraper_allsvenskan(url = urls, season = seq(from = 2015, to = 2016, by = 1))
 
 # cleans the data
 df2 <- clean_allsvenskan(data = df)
