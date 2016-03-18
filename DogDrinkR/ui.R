@@ -5,7 +5,8 @@ shinyUI(fluidPage(
   titlePanel("DogDrinkR"),
     mainPanel(
       dygraphOutput("dygraph"),
-      dataTableOutput("mytable"),
+      dataTableOutput("mytable")
+      ),
   sidebarLayout(
     sidebarPanel(
       checkboxInput("showbowls", label = "Show per Bowl", value = FALSE),
@@ -24,5 +25,4 @@ shinyUI(fluidPage(
       )
     )
     )
-  )
 ))
