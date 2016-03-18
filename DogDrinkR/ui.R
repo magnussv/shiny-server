@@ -3,7 +3,9 @@ library(dygraphs)
 shinyUI(fluidPage(
   
   titlePanel("DogDrinkR"),
-  
+    mainPanel(
+      dygraphOutput("dygraph"),
+      dataTableOutput("mytable"),
   sidebarLayout(
     sidebarPanel(
       checkboxInput("showbowls", label = "Show per Bowl", value = FALSE),
@@ -20,10 +22,7 @@ shinyUI(fluidPage(
       tags$div(class="header", checked=NA,
                tags$p("Fill in data at"), tags$a(href="http://tinyurl.com/DogDrinkR", "http://tinyurl.com/DogDrinkR")
       )
-    ),
-    mainPanel(
-      dygraphOutput("dygraph"),
-      dataTableOutput("mytable")
+    )
     )
   )
 ))
