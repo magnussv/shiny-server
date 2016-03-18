@@ -3,11 +3,12 @@ library(dygraphs)
 shinyUI(fluidPage(
   
   titlePanel("DogDrinkR"),
+  
+  sidebarLayout(
     mainPanel(
       dygraphOutput("dygraph"),
-      dataTableOutput("mytable")
-      ),
-  sidebarLayout(
+      dataTableOutput("mytable")),
+      
     sidebarPanel(
       checkboxInput("showbowls", label = "Show per Bowl", value = FALSE),
       checkboxInput("showannot", label = "Show Annotation", value = FALSE),
@@ -25,4 +26,5 @@ shinyUI(fluidPage(
       )
     )
     )
-))
+  )
+)
