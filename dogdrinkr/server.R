@@ -43,7 +43,8 @@ shinyServer(function(input, output) {
     if (input$showannot) {
     # add annotations
     for (i in 1:nrow(df.remark)) {
-      p1 <- p1 %>% dyAnnotation(as.character(df.remark$Date[i]), text = i, tooltip = df.remark$Remark[i], width = 20, height = 20)
+      p1 <- p1 %>% dyAnnotation(as.character(df.remark$Date[i]), text = df.remark$Remark[i], tooltip = df.remark$Remark[i], 
+                                width = max(nchar(strsplit(df.remark$Remark[i], " ")[[1]]))*8, height = nchar(df.remark$Remark[i])*3)
     }
     }
 
