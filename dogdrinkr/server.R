@@ -2,6 +2,7 @@ library(plyr)
 library(xts)
 library(dygraphs)
 library(dplyr)
+library(AnomalyDetection)
 
 
 # get data from googlesheets, read as a csv file
@@ -22,37 +23,50 @@ df.remark <- subset(df, complete.cases(df) & nchar(Remark)>0, select = c(Date, R
 
 # convert to xts object
 xts.two <- xts(subset(df.two, select = -c(Date)),
-order.by = as.Date(df.two$Date))
+               order.by = as.Date(df.two$Date))
+
 
 shinyServer(function(input, output) {
-
+  
   # a (dy)graph
   output$dygraph <- renderDygraph({
     main_title_text <- "Amount of Water per day"
     ylab_text <- "gram per day"
     
+    # show lines per bowl or not ('Total' will always appear)
     if (input$showbowls) { p1 <- dygraph(xts.two, main = main_title_text, ylab = ylab_text) 
     } else { 
       p1 <- dygraph(xts.two$Total, main = main_title_text, ylab = ylab_text)
     }  
+    
+    # the graph 'meat'
     p1  %>% dyAxis("y", valueRange = c(0, max(df.two$Total, na.rm = TRUE)+30)) %>%
       dySeries(name = "Total", label = "Both bowls", fillGraph = TRUE, drawPoints = TRUE, pointSize = 4) %>%
       dyRangeSelector(height = 20) %>%
       dyOptions(drawGrid = input$showgrid) -> p1
     
+    # show annotations
     if (input$showannot) {
-    # add annotations
-    for (i in 1:nrow(df.remark)) {
-      p1 <- p1 %>% dyAnnotation(as.character(df.remark$Date[i]), text = df.remark$Remark[i], tooltip = df.remark$Remark[i], 
-                                width = max(nchar(strsplit(df.remark$Remark[i], " ")[[1]]))*8, height = nchar(df.remark$Remark[i])*3)
+      # add annotations
+      for (i in 1:nrow(df.remark)) {
+        p1 <- p1 %>% dyAnnotation(as.character(df.remark$Date[i]), text = df.remark$Remark[i], tooltip = df.remark$Remark[i], 
+                                  width = max(nchar(strsplit(df.remark$Remark[i], " ")[[1]]))*8, height = nchar(df.remark$Remark[i])*3)
+      }
     }
-    }
-
+    
+    # show anomalies
+    if (input$showanoms == TRUE & length( anom() ) > 0) { # 
+      # add anomalies annotations
+      for (i in 1:nrow( anom() )) {
+        p1 <- p1 %>% dyAnnotation(width = 25, height = 20, as.character(anom()$timestamp[i]), text = i, tooltip = paste0("Expected value: ", anom()$expected_value[i]))
+       }
+     }
+    
     print(p1)
+    
+  })
+  
 
-    })
-  
-  
   output$from <- renderText({
     if (!is.null(input$dygraph_date_window))
       strftime(as.Date(input$dygraph_date_window[[1]])+1, "%d %b %Y")      
@@ -62,31 +76,51 @@ shinyServer(function(input, output) {
     if (!is.null(input$dygraph_date_window))
       strftime(as.Date(input$dygraph_date_window[[2]])+1, "%d %b %Y")
   })
-  
+
+
+  # reactive anomalies data frame
+  anom <- reactive({
+    # convert to data.frame
+    anom <- data.frame(Date=as.POSIXct(index(xts.two)), coredata(xts.two))
+    
+    # anomalies detection
+    anom <- as.data.frame(
+      AnomalyDetectionTs(anom[, c(1,4)], max_anoms= input$max_anoms_adjust/100, alpha = input$alpha_adjust/100, direction='both', plot=FALSE,  e_value = TRUE)$anoms
+    )
+    
+    if(nrow(anom) > 0) {
+      
+      # format timestamp to Date
+      anom <- mutate(anom,
+                     timestamp = as.Date(timestamp)+1)
+      
+    }
+    
+  })
   
   
   # a data table
   output$mytable <- renderDataTable({
     
     if (input$showtable) {
-    
-    mytable <- df.two
-    names(mytable) <- c("Date", "Small", "Big", "Both bowls")
-    
-    if(input$showbowls) {  } else { mytable <- mytable[,c(1,4)] }			
-    
-    print(mytable)
-    
+      
+      mytable <- df.two
+      names(mytable) <- c("Date", "Small", "Big", "Both bowls")
+      
+      if(input$showbowls) {  } else { mytable <- mytable[,c(1,4)] }			
+      
+      print(mytable)
+      
     } else {
-    
-    return(NULL)
-    
+      
+      return(NULL)
+      
     }
     
-    },  options = list(paging = FALSE, 
+  },  options = list(paging = FALSE, 
                      searching = FALSE,
                      bInfo = 0 # information on/off (how many records filtered, etc) https://groups.google.com/forum/#!topic/shiny-discuss/YECf_dPip9M
   ))
   
-
+  
 })
