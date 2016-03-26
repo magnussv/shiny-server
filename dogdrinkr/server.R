@@ -55,7 +55,7 @@ shinyServer(function(input, output) {
     }
     
     # show anomalies
-    if (input$showanoms == TRUE & length( anom() ) > 0) { # 
+    if (input$showanoms == TRUE & nrow( anom() ) > 0) { # 
       # add anomalies annotations
       for (i in 1:nrow( anom() )) {
         p1 <- p1 %>% dyAnnotation(width = 25, height = 20, as.character(anom()$timestamp[i]), text = i, tooltip = paste0("Expected value: ", anom()$expected_value[i]))
@@ -95,6 +95,8 @@ shinyServer(function(input, output) {
                      timestamp = as.Date(timestamp)+1)
       
     }
+    
+    return(anom)
     
   })
   
