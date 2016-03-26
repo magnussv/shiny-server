@@ -1,13 +1,12 @@
 # helper functions
-# note: this is direct copy of some of the functions from https://github.com/twitter/AnomalyDetection
-#       besides that 'AnomalyDetectionTs' is replaced with the function 'AnomalyDetectionTs2'
-#       where the only difference is that 'plot = plot.new()' is replaced with 'plot = NA' in order to
-#       hinder a 'device' window to open automatically everytime 'AnomalyDetectionTs2' is run.
-#       This will solve the 'Error: cannot open file 'Rplots.pdf'' which happens if a device window is
-#       opened in a Shiny application that is deloyed at a Shiny Server, where no write access is
-#       allowed as default. Note: the Shiny app will work locally without replacing the 'AnomalyDetectionTs' 
-#       the with 'AnomalyDetectionTs2' because 'Rplots.pdf' could be saved to a default location.
-
+# Note: This is direct copy of some of the functions from https://github.com/twitter/AnomalyDetection
+# besides that 'AnomalyDetectionTs' is replaced with the function 'AnomalyDetectionTs2'
+# where the only difference is that 'plot = plot.new()' is replaced with 'plot = NA' in order to
+# hinder a 'device' window to open automatically every time 'AnomalyDetectionTs2' is run.
+# This will solve the 'Error: cannot open file 'Rplots.pdf'' which happens if a device window is
+# opened in a Shiny application that is deployed at a Shiny Server, where no write access is
+# allowed as default. Note: the Shiny app will work locally without replacing the 'AnomalyDetectionTs' 
+# with 'AnomalyDetectionTs2' because 'Rplots.pdf' could be saved to a default location.
 
 format_timestamp <- function(indf, index = 1) {
   if (class(indf[[index]])[1] == "POSIXlt") {
