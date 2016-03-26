@@ -3,6 +3,7 @@ library(xts)
 library(dygraphs)
 library(dplyr)
 library(AnomalyDetection)
+source("helpers.R") # AnomalyDetectionTs -> AnomalyDetectionTs2
 
 
 # get data from googlesheets, read as a csv file
@@ -84,11 +85,9 @@ shinyServer(function(input, output) {
     anom <- data.frame(Date=as.POSIXct(index(xts.two)), coredata(xts.two))
     
     # anomalies detection
-    options(device=NULL)
     anom <- as.data.frame(
-      AnomalyDetectionTs(anom[, c(1,4)], max_anoms= input$max_anoms_adjust/100, alpha = input$alpha_adjust/100, direction='both', plot=FALSE,  e_value = TRUE)$anoms
+      AnomalyDetectionTs2(anom[, c(1,4)], max_anoms= input$max_anoms_adjust/100, alpha = input$alpha_adjust/100, direction='both', plot=FALSE,  e_value = TRUE)$anoms
     )
-    options(device="X11")
     
     if(nrow(anom) > 0) {
       
