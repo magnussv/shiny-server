@@ -139,7 +139,8 @@ return(data)
 # note: input should be the output from 'clean_allsvenskan' function
 
 long_clean_allsvenskan <- function(data = NA) {
-
+detach("package:dplyr", unload=TRUE)
+library(plyr)
 
 # reshapes table to long
 library(reshape)
@@ -228,7 +229,6 @@ data.two <- mutate(data.two,
 								   desc(CUM_GOAL_DIFF), desc(CUM_GOAL_FOR), desc(CUM_W))
 			
 		# order variable within each season		
-		library(plyr)
 		data.two	<- ddply(data.two, .(SEASON, CUM_GAMES_PLAYED), mutate,
 										CUM_POSITION	=	1:NROW(piece))		
 
