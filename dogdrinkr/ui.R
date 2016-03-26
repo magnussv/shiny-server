@@ -22,7 +22,7 @@ shinyUI(fluidPage(
       conditionalPanel(condition = "input.showanoms == true",
                        sliderInput(inputId = "alpha_adjust",
                                    label = "Significance level, as a percentage, with which to accept or reject anomalies",
-                                   min = 1, max = 49, value = 5, step = 1, ticks = FALSE)
+                                   min = 1, max = 30, value = 5, step = 1, ticks = FALSE)
       ),
       hr(),
       div(strong("From: "), textOutput("from", inline = TRUE)),
