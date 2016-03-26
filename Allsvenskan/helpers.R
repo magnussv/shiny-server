@@ -228,6 +228,7 @@ data.two <- mutate(data.two,
 								   desc(CUM_GOAL_DIFF), desc(CUM_GOAL_FOR), desc(CUM_W))
 			
 		# order variable within each season		
+		library(plyr)
 		data.two	<- ddply(data.two, .(SEASON, CUM_GAMES_PLAYED), mutate,
 										CUM_POSITION	=	1:NROW(piece))		
 
