@@ -81,13 +81,27 @@ shinyServer(function(input, output) {
 
   # reactive anomalies data frame
   anom <- reactive({
-    # convert to data.frame
-    anom <- data.frame(Date=as.POSIXct(index(xts.two)), coredata(xts.two))
     
+     # NA Imputation
+     df.imp <- data.frame(Date = seq(min(df.two$Date), max(df.two$Date), by = "day"))
+     imp.dates <- as.Date(setdiff(df.imp$Date, df.two$Date))
+
+     df.imp <- merge(df.imp, df.two, by = "Date", all.x=TRUE)
+
+     mean.Total <-  mean(df.imp$Total, na.rm = TRUE) 
+     df.imp$Total[is.na(df.imp$Total)] <- mean.Total # replace NA with mean value  
+
+   # convert date to POSIXct
+   df.imp <- mutate(df.imp,
+				Date = as.POSIXct(Date))
+
     # anomalies detection
     anom <- as.data.frame(
-      AnomalyDetectionTs2(anom[, c(1,4)], max_anoms= input$max_anoms_adjust/100, alpha = input$alpha_adjust/100, direction='both', plot=FALSE,  e_value = TRUE)$anoms
+      AnomalyDetectionTs2(df.imp[, c(1,4)], max_anoms= input$max_anoms_adjust/100, alpha = input$alpha_adjust/100, direction='both', plot=FALSE,  e_value = TRUE)$anoms
     )
+    
+    # remove dates with imputated values
+    anom <- subset(anom, !(as.Date(timestamp) %in% imp.dates))
     
     if(nrow(anom) > 0) {
       
