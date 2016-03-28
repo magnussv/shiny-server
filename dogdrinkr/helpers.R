@@ -427,7 +427,7 @@ AnomalyDetectionTs2 <- function(x, max_anoms = 0.10, direction = 'pos',
   # If there are no anoms, then let's exit
   if(anom_pct == 0){
     if(verbose) message("No anomalies detected.")
-    return (list("anoms"=data.frame(), "plot"=plot.new()))
+    return (list("anoms"=data.frame(), "plot"=NA)) # changed from '"plot"=plot.new()' to '"plot"=NA'
   }
   
   if(plot){
