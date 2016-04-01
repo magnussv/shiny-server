@@ -100,9 +100,7 @@ shinyServer(function(input, output) {
       AnomalyDetectionTs2(df.imp[, c(1,4)], max_anoms= input$max_anoms_adjust/100, alpha = input$alpha_adjust/100, direction='both', plot=FALSE,  e_value = TRUE)$anoms
     )
     
-    # remove dates with imputated values
-    anom <- subset(anom, !(as.Date(timestamp) %in% imp.dates))
-    
+ 
     if(nrow(anom) > 0) {
       
       # format timestamp to Date
@@ -116,6 +114,9 @@ shinyServer(function(input, output) {
       #anom <- anom[0,]
     
     }
+    
+    # remove dates with imputated values
+    anom <- subset(anom, !(as.Date(timestamp) %in% imp.dates))
     
     return(anom)
     
