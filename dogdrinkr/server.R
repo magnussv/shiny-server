@@ -112,8 +112,8 @@ shinyServer(function(input, output) {
     } else {
     
       # create a data frame with the same formatting but with zero rows
-      anom <- data.frame(timestamp = as.Date("2016-03-09"), anoms = 300, expected_value = 300)
-      anom <- anom[0,]
+      anom <- data.frame(timestamp = as.Date("2010-01-01"), anoms = 300, expected_value = 300)
+      #anom <- anom[0,]
     
     }
     
