@@ -139,7 +139,6 @@ return(data)
 # note: input should be the output from 'clean_allsvenskan' function
 
 long_clean_allsvenskan <- function(data = NA) {
-detach("package:dplyr", unload=TRUE)
 library(plyr)
 
 # reshapes table to long
