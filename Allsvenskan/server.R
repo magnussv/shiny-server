@@ -89,16 +89,14 @@ df3 <- rbind(df3_past, df3_current)
 	# don't update
  }
 
+# render UI output
+output$Seasons <- renderUI({
+  seasons <- sort(unique(as.character(df3$TEAM)))
+  
+  checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
+                     seasons, selected = max( seasons ))
+})
 
-# reactive season variable
-output$seasons <- reactive({ 
-        
-        seasons <- sort(unique(df3$TEAM))
-        return(seasons)
-        
-        })
-        
- 
   # a table, reactive to input$show_season
   output$mytable1 <- renderDataTable({
   
