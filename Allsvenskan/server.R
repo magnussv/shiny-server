@@ -91,7 +91,7 @@ df3 <- rbind(df3_past, df3_current)
 
 
 # reactive season variable
-seasons <- reactive({ 
+output$seasons <- reactive({ 
         
         seasons <- sort(unique(df3$TEAM))
         return(seasons)
