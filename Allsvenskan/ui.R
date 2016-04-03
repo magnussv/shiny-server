@@ -23,7 +23,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
 			fluidRow(
 				column(6,
 		checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
-                           seasons(), selected = max(seasons() ))),
+                           output.seasons, selected = max( output.seasons ))),
 				column(6,
 		checkboxGroupInput('mytable1_show_home_or_away', 'Visa Hemma och/eller Borta:',
                            c("Hemma", "Borta"), selected = c("Hemma", "Borta")))				   
