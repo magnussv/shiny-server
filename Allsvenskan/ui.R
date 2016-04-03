@@ -23,6 +23,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
   tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "shared/selectize/css/selectize.bootstrap3.css"),
       tags$link(rel = "stylesheet", type = "text/css", href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"),
+      tags$link(rel = "stylesheet", type = "text/css", href = "custom_styles.css"),
       tags$script(src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"),
       tags$script(src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"),
       tags$script(src = "shared/selectize/js/selectize.min.js"),
