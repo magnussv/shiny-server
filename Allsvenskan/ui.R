@@ -17,7 +17,7 @@ library(DT)
 library(jsonlite)
 
 shinyUI(navbarPage("ALLSVENSKAN",
-  theme = "flatly.css"
+  theme = "flatly.css",
   title = 'ALLSVENSKAN',
   
   tags$head(
