@@ -91,7 +91,7 @@ df3 <- rbind(df3_past, df3_current)
 
 # render UI output
 output$Seasons <- renderUI({
-  seasons <- sort(unique(as.character(df3$TEAM)))
+  seasons <- sort(unique(as.character(df3$SEASON)))
   
   checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
                      seasons, selected = max( seasons ))
