@@ -1,0 +1,13 @@
+.bootstrap-select .btn-default {
+  background-color: #fff;
+  border: 1px solid #dce4ec;
+  color: #2c3e50;
+  height: 45px;
+}
+.bootstrap-select .btn-default .filter-option { color: #777; }
+.bootstrap-select.open .dropdown-toggle.btn-default {
+  background-color: #fff;
+  color: #2c3e50;
+}
+.bootstrap-select.btn-group .dropdown-menu li a { color: #2c3e50; }
+.bootstrap-select.btn-group .dropdown-menu li a:hover { color: #fff; }
