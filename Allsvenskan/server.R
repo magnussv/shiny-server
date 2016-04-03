@@ -90,11 +90,20 @@ df3 <- rbind(df3_past, df3_current)
  }
 
 # render UI output
+#output$Seasons <- renderUI({
+#  seasons <- sort(unique(as.character(df3$SEASON)))
+#  
+#  checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
+#                     seasons, selected = max( seasons ))
+#})
+
 output$Seasons <- renderUI({
-  seasons <- sort(unique(as.character(df3$SEASON)))
-  
-  checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
-                     seasons, selected = max( seasons ))
+selectInput('mytable1_show_season',
+                      label = 'Välj säsong(er):',
+                      choices = seasons,
+                      selected = max( seasons ),
+                      multiple = TRUE,
+                      selectize = FALSE)
 })
 
   # a table, reactive to input$show_season
