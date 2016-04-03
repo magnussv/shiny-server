@@ -90,6 +90,15 @@ df3 <- rbind(df3_past, df3_current)
  }
 
 
+# reactive season variable
+seasons <- reactive({ 
+        
+        seasons <- sort(unique(df3$TEAM))
+        return(seasons)
+        
+        })
+        
+ 
   # a table, reactive to input$show_season
   output$mytable1 <- renderDataTable({
   
