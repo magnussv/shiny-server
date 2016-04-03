@@ -98,6 +98,9 @@ df3 <- rbind(df3_past, df3_current)
 #})
 
 output$Seasons <- renderUI({
+
+seasons <- sort(unique(as.character(df3$SEASON)))
+
 selectInput('mytable1_show_season',
                       label = 'Välj säsong(er):',
                       choices = seasons,
