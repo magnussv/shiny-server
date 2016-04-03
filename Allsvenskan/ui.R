@@ -23,7 +23,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
 			fluidRow(
 				column(6,
 		checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
-                           2001:2015, selected = 2015)),
+                           2001:2016, selected = 2016)),
 				column(6,
 		checkboxGroupInput('mytable1_show_home_or_away', 'Visa Hemma och/eller Borta:',
                            c("Hemma", "Borta"), selected = c("Hemma", "Borta")))				   
@@ -43,7 +43,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
 	sidebarLayout(
       sidebarPanel(
         checkboxGroupInput('myplot1_show_season', 'Välj säsong(er):',
-                           2001:2015, selected = 2015),
+                           2001:2016, selected = 2016),
 		checkboxGroupInput('myplot1_show_team', 'Välj lag (ett eller flera):',
                            c("AIK", "Assyriska Fören.",  "BK Häcken", "Djurgården", "Enköpings SK FK",   "Falkenbergs FF",    "GAIS", "Gefle IF", "Gefle IF FF",      
 							"GIF Sundsvall",     "Halmstads BK",      "Hammarby",          "Helsingborgs IF",   "IF Brommapojkarna", "IF Elfsborg",       "IFK Göteborg",      "IFK Norrköping",    "IFK Norrköping FK",
@@ -62,7 +62,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
         fluidRow(
         column(6,
 		checkboxGroupInput('mytable4_show_season', 'Välj säsong(er):',
-                           2001:2015, selected = 2001:2015)),
+                           2001:2016, selected = 2001:2016)),
 		column(6,
 		checkboxGroupInput('mytable4_show_home_or_away', 'Visa Hemma och/eller Borta:',
                            c("Hemma", "Borta"), selected = c("Hemma", "Borta")))),			   
