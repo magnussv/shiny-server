@@ -106,7 +106,7 @@ selectInput(inputId = "mytable1_show_season",
                       choices = seasons,
                       selected = max( seasons ),
                       multiple = TRUE,
-                      selectize = FALSE)
+                      selectize = TRUE)
 })
 
   # a table, reactive to input$show_season
