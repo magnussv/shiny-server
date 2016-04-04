@@ -1,3 +1,20 @@
+.navbar {
+  font-size: 18px;
+  min-height: 41px !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.navbar-nav { margin: 0 -15px; }
+.navbar-nav a {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+.github-link { text-align: center; }
+.download-link-container {
+  margin-top: 5px;
+  text-align: right;
+}
 .bootstrap-select .btn-default {
   background-color: #fff;
   border: 1px solid #dce4ec;
