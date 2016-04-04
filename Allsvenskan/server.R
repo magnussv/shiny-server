@@ -101,7 +101,7 @@ output$Seasons <- renderUI({
 
 seasons <- sort(unique(as.character(df3$SEASON)))
 
-selectInput('mytable1_show_season',
+selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
                       choices = seasons,
                       selected = max( seasons ),
