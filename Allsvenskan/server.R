@@ -97,9 +97,12 @@ df3 <- rbind(df3_past, df3_current)
 #                     seasons, selected = max( seasons ))
 #})
 
+### render UI output
+
+# "Tabell" panel: mytable1_show_season
 output$Seasons <- renderUI({
 
-seasons <- sort(unique(as.character(df3$SEASON)))
+seasons <- sort(unique(as.character(df3$SEASON)), decreasing = TRUE) # last season first
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
@@ -108,6 +111,21 @@ selectInput(inputId = "mytable1_show_season",
                       multiple = TRUE,
                       selectize = FALSE)
 })
+
+# "Position per omgång" panel: myplot1_show_season
+output$Seasons2 <- renderUI({
+
+seasons <- sort(unique(as.character(df3$SEASON)), decreasing = TRUE) # last season first
+
+selectInput(inputId = "myplot1_show_season",
+                      label = 'Välj säsong(er):',
+                      choices = seasons,
+                      selected = max( seasons ),
+                      multiple = TRUE,
+                      selectize = FALSE)
+})
+
+
 
   # a table, reactive to input$show_season
   output$mytable1 <- renderDataTable({
@@ -176,7 +194,7 @@ selectInput(inputId = "mytable1_show_season",
 	output$myplot1	<- renderPlot({	
 	
 library(ggplot2)
-ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$mytable1_show_season), #SEASON %in% input$myplot1_show_season), 
+ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1_show_season), 
 	aes(x= CUM_GAMES_PLAYED, y= CUM_POSITION, color = TEAM)) +	
 			geom_step(size = 1) +
 			#geom_line(size = 1) +
