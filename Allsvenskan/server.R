@@ -56,7 +56,7 @@ df3_current <- long_clean_allsvenskan(data = df2)
 df3 <- rbind(df3_past, df3_current)
 
 # data frame with unique combinations of seasons and team
-df_picker <- ddply(df3_current, .(TEAM, SEASON), summarise, COUNT = 1)
+df_picker <- ddply(df3, .(TEAM, SEASON), summarise, COUNT = 1)
 
 
 shinyServer(function(input, output) {
