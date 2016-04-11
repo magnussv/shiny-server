@@ -57,15 +57,16 @@ shinyUI(navbarPage("ALLSVENSKAN",
 	sidebarLayout(
       sidebarPanel(
         uiOutput("Seasons2"),
+        uiOutput("teams")
         #checkboxGroupInput('myplot1_show_season', 'Välj säsong(er):',
         #                   2001:2016, selected = 2016),
-		checkboxGroupInput('myplot1_show_team', 'Välj lag (ett eller flera):',
-                           c("AIK", "Assyriska Fören.",  "BK Häcken", "Djurgården", "Enköpings SK FK",   "Falkenbergs FF",    "GAIS", "Gefle IF", "Gefle IF FF",      
-							"GIF Sundsvall",     "Halmstads BK",      "Hammarby",          "Helsingborgs IF",   "IF Brommapojkarna", "IF Elfsborg",       "IFK Göteborg",      "IFK Norrköping",    "IFK Norrköping FK",
-							"Kalmar FF",         "Landskrona BoIS",   "Ljungskile SK",     "Malmö FF",          "Mjällby AIF",       "Syrianska FC",      "Trelleborgs FF",    "Åtvidabergs FF",    "Örebro",           
-							"Örebro SK",         "Örgryte",           "Örgryte IS",        "Östers IF")
-						   , selected = "Malmö FF")				   	   
-				),
+	#	checkboxGroupInput('myplot1_show_team', 'Välj lag (ett eller flera):',
+        #                   c("AIK", "Assyriska Fören.",  "BK Häcken", "Djurgården", "Enköpings SK FK",   "Falkenbergs FF",    "GAIS", "Gefle IF", "Gefle IF FF",      
+	#						"GIF Sundsvall",     "Halmstads BK",      "Hammarby",          "Helsingborgs IF",   "IF Brommapojkarna", "IF Elfsborg",       "IFK Göteborg",      "IFK Norrköping",    "IFK Norrköping FK",
+	#						"Kalmar FF",         "Landskrona BoIS",   "Ljungskile SK",     "Malmö FF",          "Mjällby AIF",       "Syrianska FC",      "Trelleborgs FF",    "Åtvidabergs FF",    "Örebro",           
+	#						"Örebro SK",         "Örgryte",           "Örgryte IS",        "Östers IF")
+	#					   , selected = "Malmö FF")				   	   
+	),
       mainPanel(
         plotOutput('myplot1', height = "600")
       )
