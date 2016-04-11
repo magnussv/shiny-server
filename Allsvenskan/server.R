@@ -176,7 +176,7 @@ selectInput(inputId = "mytable1_show_season",
 	output$myplot1	<- renderPlot({	
 	
 library(ggplot2)
-ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1_show_season), 
+ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$mytable1_show_season), #SEASON %in% input$myplot1_show_season), 
 	aes(x= CUM_GAMES_PLAYED, y= CUM_POSITION, color = TEAM)) +	
 			geom_step(size = 1) +
 			#geom_line(size = 1) +
