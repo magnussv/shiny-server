@@ -37,7 +37,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
       sidebarPanel(
 			fluidRow(
 				column(6,
-		uiOutput("Seasons")),
+		uiOutput("mytable1_show_season")),
 				column(6,
 		checkboxGroupInput('mytable1_show_home_or_away', 'Visa Hemma och/eller Borta:',
                            c("Hemma", "Borta"), selected = c("Hemma", "Borta")))				   
@@ -56,8 +56,8 @@ shinyUI(navbarPage("ALLSVENSKAN",
   tabPanel("Position per omgång", 
 	sidebarLayout(
       sidebarPanel(
-        uiOutput("Seasons2"),
-        uiOutput("teams")
+        uiOutput("myplot1_show_season"),
+        uiOutput("myplot1_show_team")
 	),
       mainPanel(
         plotOutput('myplot1', height = "600")
@@ -69,7 +69,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
       sidebarPanel(
         fluidRow(
         column(6,
-		uiOutput("Seasons3")),
+		uiOutput("mytable4_show_season")),
 		column(6,
 		checkboxGroupInput('mytable4_show_home_or_away', 'Visa Hemma och/eller Borta:',
                            c("Hemma", "Borta"), selected = c("Hemma", "Borta")))),			   
