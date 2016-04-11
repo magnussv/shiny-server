@@ -96,7 +96,7 @@ df3 <- rbind(df3_past, df3_current)
 ### render UI output
 
 # "Tabell" panel: mytable1_show_season
-output$Seasons <- renderUI({
+output$mytable1_show_season <- renderUI({
 
 seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
@@ -109,7 +109,7 @@ selectInput(inputId = "mytable1_show_season",
 })
 
 # "Position per omgång" panel: myplot1_show_season
-output$Seasons2 <- renderUI({
+output$myplot1_show_season <- renderUI({
 
 seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
@@ -122,7 +122,7 @@ selectInput(inputId = "myplot1_show_season",
 })
 
 # "Position per omgång" panel: input$myplot1_show_team
-output$teams <- renderUI({
+output$myplot1_show_team <- renderUI({
 
 teams <- sort(unique(as.character(df_picker$TEAM)))
 
@@ -135,7 +135,7 @@ selectInput(inputId = "myplot1_show_team",
 })
 
 # "Lag mot lag" panel: mytable4_show_season
-output$Seasons3 <- renderUI({
+output$mytable4_show_season <- renderUI({
 
 seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
