@@ -92,13 +92,6 @@ df3 <- rbind(df3_past, df3_current)
 	# don't update
  }
 
-# render UI output
-#output$Seasons <- renderUI({
-#  seasons <- sort(unique(as.character(df3$SEASON)))
-#  
-#  checkboxGroupInput('mytable1_show_season', 'Välj säsong(er):',
-#                     seasons, selected = max( seasons ))
-#})
 
 ### render UI output
 
@@ -137,6 +130,45 @@ selectInput(inputId = "myplot1_show_team",
                       label = 'Välj lag (ett eller flera):',
                       choices = teams,
                       selected = "Malmö FF",
+                      multiple = TRUE,
+                      selectize = FALSE)
+})
+
+# "Lag mot lag" panel: mytable4_show_season
+output$Seasons3 <- renderUI({
+
+seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
+
+selectInput(inputId = "mytable4_show_season",
+                      label = 'Välj säsong(er):',
+                      choices = seasons,
+                      selected = min(seasons):max(seasons),
+                      multiple = TRUE,
+                      selectize = FALSE)
+})
+
+# "Lag mot lag" panel: mytable4_show_team
+output$mytable4_show_team <- renderUI({
+
+teams <- sort(unique(as.character(df_picker$TEAM)))
+
+selectInput(inputId = "mytable4_show_team",
+                      label = 'Välj lag (ett eller flera):',
+                      choices = teams,
+                      selected = "Malmö FF",
+                      multiple = TRUE,
+                      selectize = FALSE)
+})
+
+# "Lag mot lag" panel: mytable4_show_opponent
+output$mytable4_show_opponent <- renderUI({
+
+teams <- sort(unique(as.character(df_picker$TEAM)))
+
+selectInput(inputId = "mytable4_show_opponent",
+                      label = 'Välj lag (ett eller flera):',
+                      choices = teams,
+                      selected = "Helsingborgs IF",
                       multiple = TRUE,
                       selectize = FALSE)
 })
