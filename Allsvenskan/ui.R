@@ -56,7 +56,7 @@ shinyUI(navbarPage("ALLSVENSKAN",
   tabPanel("Position per omgång", 
 	sidebarLayout(
       sidebarPanel(
-        uiOutput("Seasons"),
+        uiOutput("Seasons2"),
         #checkboxGroupInput('myplot1_show_season', 'Välj säsong(er):',
         #                   2001:2016, selected = 2016),
 		checkboxGroupInput('myplot1_show_team', 'Välj lag (ett eller flera):',
