@@ -69,27 +69,16 @@ shinyUI(navbarPage("ALLSVENSKAN",
       sidebarPanel(
         fluidRow(
         column(6,
-		checkboxGroupInput('mytable4_show_season', 'Välj säsong(er):',
-                           2001:2016, selected = 2001:2016)),
+		uiOutput("Seasons3")),
 		column(6,
 		checkboxGroupInput('mytable4_show_home_or_away', 'Visa Hemma och/eller Borta:',
                            c("Hemma", "Borta"), selected = c("Hemma", "Borta")))),			   
 		fluidRow(
         column(6,
-		checkboxGroupInput('mytable4_show_team', 'Välj lag (ett eller flera):',
-                           c("AIK", "Assyriska Fören.",  "BK Häcken", "Djurgården", "Enköpings SK FK",   "Falkenbergs FF",    "GAIS", "Gefle IF", "Gefle IF FF",      
-							"GIF Sundsvall",     "Halmstads BK",      "Hammarby",          "Helsingborgs IF",   "IF Brommapojkarna", "IF Elfsborg",       "IFK Göteborg",      "IFK Norrköping",    "IFK Norrköping FK",
-							"Kalmar FF",         "Landskrona BoIS",   "Ljungskile SK",     "Malmö FF",          "Mjällby AIF",       "Syrianska FC",      "Trelleborgs FF",    "Åtvidabergs FF",    "Örebro",           
-							"Örebro SK",         "Örgryte",           "Örgryte IS",        "Östers IF")
-						   , selected = "Malmö FF")),
+	        uiOutput("mytable4_show_team")),
         column(6,
-		checkboxGroupInput('mytable4_show_opponent', 'Välj motståndare (ett eller flera):',
-                           c("AIK", "Assyriska Fören.",  "BK Häcken", "Djurgården", "Enköpings SK FK",   "Falkenbergs FF",    "GAIS", "Gefle IF", "Gefle IF FF",      
-							"GIF Sundsvall",     "Halmstads BK",      "Hammarby",          "Helsingborgs IF",   "IF Brommapojkarna", "IF Elfsborg",       "IFK Göteborg",      "IFK Norrköping",    "IFK Norrköping FK",
-							"Kalmar FF",         "Landskrona BoIS",   "Ljungskile SK",     "Malmö FF",          "Mjällby AIF",       "Syrianska FC",      "Trelleborgs FF",    "Åtvidabergs FF",    "Örebro",           
-							"Örebro SK",         "Örgryte",           "Örgryte IS",        "Östers IF")
-						   , selected = "Helsingborgs IF")))
-				),
+		uiOutput("mytable4_show_opponent")))
+		),
       mainPanel(
          dataTableOutput('mytable4'),
 		 hr(),
