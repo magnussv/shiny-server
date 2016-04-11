@@ -55,6 +55,9 @@ df3_current <- long_clean_allsvenskan(data = df2)
 # row binds the data frames
 df3 <- rbind(df3_past, df3_current)
 
+# data frame with unique combinations of seasons and team
+df_picker <- ddply(df3_current, .(TEAM, SEASON), summarise, COUNT = 1)
+
 
 shinyServer(function(input, output) {
 
@@ -102,7 +105,7 @@ df3 <- rbind(df3_past, df3_current)
 # "Tabell" panel: mytable1_show_season
 output$Seasons <- renderUI({
 
-seasons <- sort(unique(as.character(df3$SEASON)), decreasing = TRUE) # last season first
+seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
@@ -115,7 +118,7 @@ selectInput(inputId = "mytable1_show_season",
 # "Position per omgång" panel: myplot1_show_season
 output$Seasons2 <- renderUI({
 
-seasons <- sort(unique(as.character(df3$SEASON)), decreasing = TRUE) # last season first
+seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
 selectInput(inputId = "myplot1_show_season",
                       label = 'Välj säsong(er):',
@@ -125,6 +128,18 @@ selectInput(inputId = "myplot1_show_season",
                       selectize = FALSE)
 })
 
+# "Position per omgång" panel: input$myplot1_show_team
+output$teams <- renderUI({
+
+teams <- sort(unique(as.character(df_picker$TEAM)))
+
+selectInput(inputId = "myplot1_show_team",
+                      label = 'Välj lag (ett eller flera):',
+                      choices = teams,
+                      selected = "Malmö FF",
+                      multiple = TRUE,
+                      selectize = FALSE)
+})
 
 
   # a table, reactive to input$show_season
