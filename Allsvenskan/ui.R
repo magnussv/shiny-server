@@ -56,8 +56,9 @@ shinyUI(navbarPage("ALLSVENSKAN",
   tabPanel("Position per omgång", 
 	sidebarLayout(
       sidebarPanel(
-        checkboxGroupInput('myplot1_show_season', 'Välj säsong(er):',
-                           2001:2016, selected = 2016),
+        uiOutput("Seasons"),
+        #checkboxGroupInput('myplot1_show_season', 'Välj säsong(er):',
+        #                   2001:2016, selected = 2016),
 		checkboxGroupInput('myplot1_show_team', 'Välj lag (ett eller flera):',
                            c("AIK", "Assyriska Fören.",  "BK Häcken", "Djurgården", "Enköpings SK FK",   "Falkenbergs FF",    "GAIS", "Gefle IF", "Gefle IF FF",      
 							"GIF Sundsvall",     "Halmstads BK",      "Hammarby",          "Helsingborgs IF",   "IF Brommapojkarna", "IF Elfsborg",       "IFK Göteborg",      "IFK Norrköping",    "IFK Norrköping FK",
