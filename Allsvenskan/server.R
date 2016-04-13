@@ -105,7 +105,7 @@ selectInput(inputId = "mytable1_show_season",
                       choices = seasons,
                       selected = max( seasons ),
                       multiple = TRUE,
-                      selectize = FALSE)
+                      selectize = TRUE)
 })
 
 # "Position per omgång" panel: myplot1_show_season
@@ -118,7 +118,7 @@ selectInput(inputId = "myplot1_show_season",
                       choices = seasons,
                       selected = max( seasons ),
                       multiple = TRUE,
-                      selectize = FALSE)
+                      selectize = TRUE)
 })
 
 # "Position per omgång" panel: input$myplot1_show_team
@@ -131,7 +131,7 @@ selectInput(inputId = "myplot1_show_team",
                       choices = teams,
                       selected = "Malmö FF",
                       multiple = TRUE,
-                      selectize = FALSE)
+                      selectize = TRUE)
 })
 
 # "Lag mot lag" panel: mytable4_show_season
