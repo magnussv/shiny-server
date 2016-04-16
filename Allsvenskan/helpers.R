@@ -26,13 +26,13 @@ df.urls <- data.frame(URL = url, SEASON = season)
 library(RCurl)
 library(XML)
 
-list_of_dfs		<- 		list()	
+list_of_dfs <- list()	
 for(i in 1:nrow(df.urls)){
 
 url.doc <- htmlParse(df.urls$URL[i], encoding="UTF-8") # parse the document for R representation
 html.table <- as.data.frame(readHTMLTable(url.doc))
 
-				html.table$SEASON <- df.urls$SEASON[i]
+ html.table$SEASON <- df.urls$SEASON[i]
 				
 list_of_dfs[[length(list_of_dfs)+1]]  <- html.table
 
@@ -170,8 +170,8 @@ data.two <- melt(data, id.vars = c("DATE_AND_TIME", "DATE", "TIME", "GAME", "RES
 													
 # renames variables		
 data.two <- rename(data.two, 
-		c(variable  	=		"HOME_OR_AWAY",
-		value	        =		"TEAM"))
+		c(variable  	=	"HOME_OR_AWAY",
+		value	        =	"TEAM"))
 
 # creates OPPONENT team	column 						
 TEXT <- as.vector(data.two$GAME)
@@ -192,35 +192,35 @@ TEXT <- as.vector(data.two$RESULT)
 # note: two games have ATTENDENCE = NA in the past... how to fix
 # subset(df.result.two, ATTENDENCE == "" & !is.na(HOME_GOALS))
 data.two <- mutate(data.two,
-		GOAL_FOR        =	     ifelse(TEAM == HOME_TEAM, HOME_GOALS,
-				              ifelse(TEAM == AWAY_TEAM, AWAY_GOALS, NA)),
+		GOAL_FOR        =	ifelse(TEAM == HOME_TEAM, HOME_GOALS,
+				         ifelse(TEAM == AWAY_TEAM, AWAY_GOALS, NA)),
 							
-		GOAL_AGAINST	=            ifelse(TEAM == HOME_TEAM, AWAY_GOALS,
-				              ifelse(TEAM == AWAY_TEAM, HOME_GOALS, NA)),
+		GOAL_AGAINST	=       ifelse(TEAM == HOME_TEAM, AWAY_GOALS,
+				         ifelse(TEAM == AWAY_TEAM, HOME_GOALS, NA)),
 															
-		GOAL_DIFF       =	      GOAL_FOR - GOAL_AGAINST								
+		GOAL_DIFF       =	GOAL_FOR - GOAL_AGAINST								
 	     )
 
 
 # creates games placed, points and Win/Draw/Loss indicators															
 data.two <- mutate(data.two,
-		GAMES_PLAYED	=			ifelse(is.na(GOAL_FOR), NA, 1),
+		GAMES_PLAYED	=	ifelse(is.na(GOAL_FOR), NA, 1),
 							
-		POINTS		=			ifelse(GOAL_FOR > GOAL_AGAINST, 3,
-							 ifelse(GOAL_FOR == GOAL_AGAINST, 1, 
-							  ifelse(GOAL_FOR < GOAL_AGAINST, 0, NA))),
+		POINTS		=	ifelse(GOAL_FOR > GOAL_AGAINST, 3,
+					 ifelse(GOAL_FOR == GOAL_AGAINST, 1, 
+					  ifelse(GOAL_FOR < GOAL_AGAINST, 0, NA))),
 							
-		W		=			ifelse(GOAL_FOR > GOAL_AGAINST, 1,
-							 ifelse(GOAL_FOR == GOAL_AGAINST, 0, 
-							  ifelse(GOAL_FOR < GOAL_AGAINST, 0, NA))),
+		W		=	ifelse(GOAL_FOR > GOAL_AGAINST, 1,
+					 ifelse(GOAL_FOR == GOAL_AGAINST, 0, 
+					  ifelse(GOAL_FOR < GOAL_AGAINST, 0, NA))),
 
-		D		=			ifelse(GOAL_FOR > GOAL_AGAINST, 0,
-							 ifelse(GOAL_FOR == GOAL_AGAINST, 1, 
-							  ifelse(GOAL_FOR < GOAL_AGAINST, 0, NA))),
+		D		=	ifelse(GOAL_FOR > GOAL_AGAINST, 0,
+					 ifelse(GOAL_FOR == GOAL_AGAINST, 1, 
+					  ifelse(GOAL_FOR < GOAL_AGAINST, 0, NA))),
 
-		L		=			ifelse(GOAL_FOR > GOAL_AGAINST, 0,
-							 ifelse(GOAL_FOR == GOAL_AGAINST, 0, 
-							  ifelse(GOAL_FOR < GOAL_AGAINST, 1, NA)))
+		L		=	ifelse(GOAL_FOR > GOAL_AGAINST, 0,
+					 ifelse(GOAL_FOR == GOAL_AGAINST, 0, 
+					  ifelse(GOAL_FOR < GOAL_AGAINST, 1, NA)))
 	    )
 
 
@@ -236,10 +236,10 @@ data.two <- mutate(data.two,
 			CUM_GOAL_AGAINST	= cumsum(GOAL_AGAINST),
 			CUM_GOAL_DIFF		= cumsum(GOAL_DIFF),
 			CUM_GAMES_PLAYED	= cumsum(GAMES_PLAYED),
-			CUM_POINTS			= cumsum(POINTS),
-			CUM_W				= cumsum(W),
-			CUM_D				= cumsum(D),
-			CUM_L				= cumsum(L))
+			CUM_POINTS		= cumsum(POINTS),
+			CUM_W			= cumsum(W),
+			CUM_D			= cumsum(D),
+			CUM_L			= cumsum(L))
 
 # create league position at each round within a season
 data.two <- arrange(data.two, SEASON, CUM_GAMES_PLAYED, desc(CUM_POINTS), 
