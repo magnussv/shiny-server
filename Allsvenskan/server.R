@@ -101,7 +101,7 @@ output$mytable1_show_season <- renderUI({
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
-                      choices = 2001:2016, #faster solution instead of: choices = seasons,
+                      choices = 2016:2001, #faster solution instead of: choices = seasons,
                       selected = 2016, #faster solution instead of: selected = max( seasons ),
                       multiple = TRUE,
                       selectize = FALSE)
