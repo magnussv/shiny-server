@@ -66,7 +66,7 @@ df3_past <- mutate(df3_past,
 ###   # creates a long data frame useful for creating a season table etc
 ###   df3 <- long_clean_allsvenskan(data = df2)
 ###   
-###   write.table(df3, "Allsvenskan_past_seasons.csv", sep=";", dec=".", row.names= FALSE)
+###   write.table(df3, "Allsvenskan_past_seasons.csv", sep=";", dec=".", row.names= FALSE, fileEncoding="utf-8")
 ##########################################################################################################
 
 ### gets data via webscraping representing current season
@@ -97,7 +97,7 @@ shinyServer(function(input, output) {
 # "Tabell" panel: mytable1_show_season
 output$mytable1_show_season <- renderUI({
 
-seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
+#seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
@@ -237,11 +237,13 @@ selectInput(inputId = "mytable4_show_opponent",
 	
 library(ggplot2)
 ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1_show_season), 
-	aes(x= CUM_GAMES_PLAYED, y= CUM_POSITION, color = TEAM)) +	
+	aes(x= as.integer(CUM_GAMES_PLAYED), y= CUM_POSITION, color = TEAM)) +	
 			geom_step(size = 1) +
+			geom_point(size = 1) +
 			#geom_line(size = 1) +
 			facet_wrap(~SEASON) +
 			#scale_y_continuous(limits = c(0, 20))
+			scale_x(lim=c(1,30)) +
 			scale_y_reverse(lim=c(16,1)) +
 			ylab("Position") +
 			xlab("Omgång") +
@@ -251,12 +253,12 @@ ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1
 				  legend.title=element_blank(),
 				  axis.title.x = element_text(size=20),
 				  axis.title.y = element_text(size=20),
-				  legend.text = element_text(size = 16)
+				  legend.text = element_text(size = 16),
+				  legend.position="top"
 				  )
 			#guides(fill=guide_legend(title=NULL))
 			#guides(fill=guide_legend(title="Lag"))
 })
-
 
 
   # a table, reactive to input$show_season
