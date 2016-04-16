@@ -239,7 +239,7 @@ library(ggplot2)
 ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1_show_season), 
 	aes(x= as.integer(CUM_GAMES_PLAYED), y= CUM_POSITION, color = TEAM)) +	
 			geom_step(size = 1) +
-			geom_point(size = 1.3) +
+			geom_point(size = 1.5) +
 			#geom_line(size = 1) +
 			facet_wrap(~SEASON) +
 			#scale_y_continuous(limits = c(0, 20))
@@ -285,7 +285,7 @@ ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1
   output$mytable5 <- renderDataTable({
   
   mytable5 <- arrange(subset(df3, TEAM %in% input$mytable4_show_team & OPPONENT %in% input$mytable4_show_opponent & SEASON %in% input$mytable4_show_season
-			), desc(DATE, TIME))[
+			), desc(DATE))[
 			, c("DATE", "TIME", "WEEKDAY", "SEASON", "GAME", "RESULT", "ATTENDENCE", "STADIUM")]
 						
 	print(mytable5)					
