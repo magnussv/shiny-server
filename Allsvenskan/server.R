@@ -243,7 +243,7 @@ ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1
 			#geom_line(size = 1) +
 			facet_wrap(~SEASON) +
 			#scale_y_continuous(limits = c(0, 20))
-			scale_x(lim=c(1,30)) +
+			xlim(1,30) +
 			scale_y_reverse(lim=c(16,1)) +
 			ylab("Position") +
 			xlab("Omgång") +
@@ -285,7 +285,7 @@ ggplot(subset(df3, TEAM %in% input$myplot1_show_team & SEASON %in% input$myplot1
   output$mytable5 <- renderDataTable({
   
   mytable5 <- arrange(subset(df3, TEAM %in% input$mytable4_show_team & OPPONENT %in% input$mytable4_show_opponent & SEASON %in% input$mytable4_show_season
-			), desc(DATE_AND_TIME))[
+			), desc(DATE, DATE_AND_TIME))[
 			, c("DATE", "TIME", "WEEKDAY", "SEASON", "GAME", "RESULT", "ATTENDENCE", "STADIUM")]
 						
 	print(mytable5)					
