@@ -66,7 +66,7 @@ df3_past <- mutate(df3_past,
 ###   # creates a long data frame useful for creating a season table etc
 ###   df3 <- long_clean_allsvenskan(data = df2)
 ###   
-###   write.table(df3, "Allsvenskan_past_seasons.csv", sep=";", dec=",", row.names= FALSE)
+###   write.table(df3, "Allsvenskan_past_seasons.csv", sep=";", dec=".", row.names= FALSE)
 ##########################################################################################################
 
 ### gets data via webscraping representing current season
