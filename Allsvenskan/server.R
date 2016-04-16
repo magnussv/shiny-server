@@ -167,7 +167,7 @@ teams <- sort(unique(as.character(df_picker$TEAM)))
 selectInput(inputId = "mytable4_show_opponent",
                       label = 'Välj lag (ett eller flera):',
                       choices = teams,
-                      selected = "Helsingborgs IF",
+                      selected = "Helsingborg",
                       multiple = TRUE,
                       selectize = FALSE)
 })
