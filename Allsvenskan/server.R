@@ -106,7 +106,8 @@ selectInput(inputId = "mytable1_show_season",
                       multiple = TRUE,
                       selectize = TRUE,
                       options = I(
-                      plugins: ['remove_button'],
+                      selectize({
+    plugins: ['remove_button'],
     delimiter: ',',
     persist: false,
     create: function(input) {
@@ -115,7 +116,7 @@ selectInput(inputId = "mytable1_show_season",
             text: input
         }
     }
-                      )
+})
                       )
 })
 
