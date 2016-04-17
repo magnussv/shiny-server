@@ -99,25 +99,12 @@ output$mytable1_show_season <- renderUI({
 
 #seasons <- sort(unique(as.character(df_picker$SEASON)), decreasing = TRUE) # last season first
 
-selectInput(inputId = "mytable1_show_season",
+selectizeInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
                       choices = 2016:2001, #faster solution instead of: choices = seasons,
                       selected = 2016, #faster solution instead of: selected = max( seasons ),
-                      multiple = TRUE,
-                      selectize = TRUE,
-                      options = 
-                      I($('#input-tags3').selectize({
-                        plugins: ['remove_button'],
-                        delimiter: ',',
-                        persist: false,
-                        create: function(input) {
-                         return {
-                         value: input,
-                        text: input
-                        }
-                        }
-                        });)
-                      )
+                      multiple = TRUE),
+                      #selectize = FALSE)
 })
 
 # "Position per omgång" panel: myplot1_show_season
