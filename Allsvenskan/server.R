@@ -104,7 +104,20 @@ selectInput(inputId = "mytable1_show_season",
                       choices = 2016:2001, #faster solution instead of: choices = seasons,
                       selected = 2016, #faster solution instead of: selected = max( seasons ),
                       multiple = TRUE,
-                      selectize = FALSE)
+                      selectize = TRUE,
+                      options = 
+                      I($('#input-tags3').selectize({
+                        plugins: ['remove_button'],
+                        delimiter: ',',
+                        persist: false,
+                        create: function(input) {
+                         return {
+                         value: input,
+                        text: input
+                        }
+                        }
+                        });)
+                      )
 })
 
 # "Position per omgång" panel: myplot1_show_season
