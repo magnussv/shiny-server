@@ -237,6 +237,6 @@ shinyServer(function(input, output) {
                  searching = FALSE,
                  bInfo = 0# information on/off (how many records filtered, etc) https://groups.google.com/forum/#!topic/shiny-discuss/YECf_dPip9M
                  )
-  #rownames= FALSE) # doesn't work on remote Shiny Server, but works locally on the same RStudio server...
-  
+  #,rownames= FALSE) # doesn't work on remote Shiny Server, but works locally on the same RStudio server...
+  )
 })
