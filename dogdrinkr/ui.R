@@ -1,3 +1,11 @@
+#
+# This is the user-interface definition of a Shiny web application. You can
+# run the application by clicking 'Run App' above.
+#
+# Find out more about building applications with Shiny here:
+# 
+#    http://shiny.rstudio.com/
+#
 library(dygraphs)
 
 shinyUI(fluidPage(
@@ -6,6 +14,15 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
+      checkboxInput("showma", label = "Show Moving Average", value = FALSE),
+      conditionalPanel(condition = "input.showma == true",
+                    sliderInput(inputId = "ma_length",
+                      label = "Number of days included in Moving Average",
+                      min = 2, max = 30, value = 7, step = 1, ticks = FALSE)
+      ),
+      conditionalPanel(condition = "input.showma == true",
+                    checkboxInput("showinterpol", label = "Interpolate missing values in Moving Average", value = TRUE)
+      ),
       checkboxInput("showbowls", label = "Show per Bowl", value = FALSE),
       checkboxInput("showannot", label = "Show Annotation", value = FALSE),
       checkboxInput("showgrid", label = "Show Grid", value = TRUE),
