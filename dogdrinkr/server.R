@@ -122,7 +122,7 @@ shinyServer(function(input, output) {
       }
 
       
-    p1  %>% dySeries(name = "Total", label = "Both bowls", fillGraph = TRUE, drawPoints = TRUE, pointSize = 4, color = "#067C77") -> p1
+    p1  %>% dySeries(name = "Total", label = "Both bowls", fillGraph = TRUE, drawPoints = TRUE, pointSize = 2, color = "#067C77") -> p1
       
       
     # show annotations
