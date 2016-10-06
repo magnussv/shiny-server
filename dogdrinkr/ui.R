@@ -14,11 +14,11 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      checkboxInput("showma", label = "Show Moving Average", value = FALSE),
+      checkboxInput("showma", label = "Show Moving Average", value = TRUE),
       conditionalPanel(condition = "input.showma == true",
                     sliderInput(inputId = "ma_length",
                       label = "Number of days included in Moving Average",
-                      min = 2, max = 30, value = 7, step = 1, ticks = FALSE)
+                      min = 2, max = 60, value = 7, step = 1, ticks = FALSE)
       ),
       conditionalPanel(condition = "input.showma == true",
                     checkboxInput("showinterpol", label = "Interpolate missing values in Moving Average", value = TRUE)
