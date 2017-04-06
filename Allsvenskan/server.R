@@ -75,7 +75,7 @@ urls <- c("http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturel
 	  "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=67049") # season 2017
 
 # scrapes the web for the data
-df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2016, by = 1))
+df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2017, by = 1))
 
 # cleans the data
 df2 <- clean_allsvenskan(data = df)
@@ -103,8 +103,8 @@ output$mytable1_show_season <- renderUI({
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
-                      choices = 2016:2001, #faster solution instead of: choices = seasons,
-                      selected = 2016, #faster solution instead of: selected = max( seasons ),
+                      choices = 2017:2001, #faster solution instead of: choices = seasons,
+                      selected = 2017, #faster solution instead of: selected = max( seasons ),
                       multiple = TRUE,
                       selectize = FALSE)
 })
