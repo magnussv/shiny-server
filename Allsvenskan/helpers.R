@@ -284,8 +284,8 @@ aggregate_long_clean_allsvenskan <- function(data = NA,
 	subset_opponent = "AIK") {
 
 # creates row sort vectors														
-row_sort_vars <- if (length(row_sort_vars) == 1 && is.na(row_sort_vars)) {  c("POINTS", "W", "GOAL_DIFF", "GOAL_FOR") 
-						} else { c(row_sort_vars, "POINTS", "W", "GOAL_DIFF", "GOAL_FOR") }
+row_sort_vars <- if (length(row_sort_vars) == 1 && is.na(row_sort_vars)) {  c("POINTS", "GOAL_DIFF", "GOAL_FOR", "W") 
+						} else { c(row_sort_vars, "POINTS", "GOAL_DIFF", "GOAL_FOR", "W") }
 
 row_sort_sign <- if (length(row_sort_sign) == 1 && is.na(row_sort_sign)) {  c(-1,-1,-1,-1) 
 						} else { c(row_sort_sign,-1,-1,-1,-1) }
