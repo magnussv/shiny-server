@@ -55,8 +55,9 @@ df3_past <- mutate(df3_past,
 ###   "http://svenskfotboll.se/allsvenskan/tidigare-ar/resultat-2012/tabell-och-resultat/?scr=fixturelist&ftid=35421",
 ###   "http://svenskfotboll.se/allsvenskan/tidigare-ar/resultat-2013/tabell-och-resultat/?scr=fixturelist&ftid=39682",
 ###   "http://svenskfotboll.se/allsvenskan/tidigare-ar/resultat-2014/tabell-och-resultat/?scr=fixturelist&ftid=50510",
-###   "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=57221") # season 2015
-###   
+###   "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=57221", # season 2015
+###   "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=67049") # 2017
+###
 ###   # scrapes the web for the data
 ###   df <- webscraper_allsvenskan(url = urls, season = seq(from = 2001, to = 2015, by = 1))
 ###   
@@ -70,7 +71,8 @@ df3_past <- mutate(df3_past,
 ##########################################################################################################
 
 ### gets data via webscraping representing current season
-urls <- c("http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=62068") # season 2016
+urls <- c("http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=62068", # season 2016
+	  "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=67049") # season 2017
 
 # scrapes the web for the data
 df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2016, by = 1))
