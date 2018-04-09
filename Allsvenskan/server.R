@@ -72,10 +72,11 @@ df3_past <- mutate(df3_past,
 
 ### gets data via webscraping representing current season
 urls <- c("http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=62068", # season 2016
-	  "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=67049") # season 2017
+	  "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=67049", # season 2017
+	  "http://svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=72152") # season 2018
 
 # scrapes the web for the data
-df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2017, by = 1))
+df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2018, by = 1))
 
 # cleans the data
 df2 <- clean_allsvenskan(data = df)
@@ -103,8 +104,8 @@ output$mytable1_show_season <- renderUI({
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
-                      choices = 2017:2001, #faster solution instead of: choices = seasons,
-                      selected = 2017, #faster solution instead of: selected = max( seasons ),
+                      choices = 2018:2001, #faster solution instead of: choices = seasons,
+                      selected = 2018, #faster solution instead of: selected = max( seasons ),
                       multiple = TRUE,
                       selectize = FALSE)
 })
@@ -169,7 +170,7 @@ teams <- sort(unique(as.character(df_picker$TEAM)))
 selectInput(inputId = "mytable4_show_opponent",
                       label = 'Välj lag (ett eller flera):',
                       choices = teams,
-                      selected = "Helsingborg",
+                      selected = "AIK",
                       multiple = TRUE,
                       selectize = FALSE)
 })
