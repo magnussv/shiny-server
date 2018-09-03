@@ -76,16 +76,17 @@ urls <- c("https://www2.svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fi
 	  "https://www2.svenskfotboll.se/allsvenskan/tabell-och-resultat/?scr=fixturelist&ftid=72152") # season 2018 # 2018-09-03: new address!
 
 # scrapes the web for the data
-df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2018, by = 1))
+#df <- webscraper_allsvenskan(url = urls, season = seq(from = 2016, to = 2018, by = 1))
 
 # cleans the data
-df2 <- clean_allsvenskan(data = df)
+#df2 <- clean_allsvenskan(data = df)
 
 # creates a long data frame useful for creating a season table etc
 df3_current <- long_clean_allsvenskan(data = df2)
 
 # row binds the data frames
-df3 <- rbind(df3_past, df3_current)
+#df3 <- rbind(df3_past, df3_current)
+df3 <- df3_current
 
 # data frame with unique combinations of seasons and team
 df_picker <- ddply(df3, .(TEAM, SEASON), summarise, COUNT = 1)
@@ -104,8 +105,8 @@ output$mytable1_show_season <- renderUI({
 
 selectInput(inputId = "mytable1_show_season",
                       label = 'Välj säsong(er):',
-                      choices = 2018:2001, #faster solution instead of: choices = seasons,
-                      selected = 2018, #faster solution instead of: selected = max( seasons ),
+                      choices = 2015:2001, #faster solution instead of: choices = seasons,
+                      selected = 2015, #faster solution instead of: selected = max( seasons ),
                       multiple = TRUE,
                       selectize = FALSE)
 })
